@@ -19,24 +19,33 @@ import java.util.UUID;
 @Setter
 public class Currency {
 
+    public Currency(UUID uuid, int curId, String curAbbreviation, int curScale, String curName, String curCode) {
+        this.uuid = uuid;
+        this.curId = curId;
+        this.curAbbreviation = curAbbreviation;
+        this.curScale = curScale;
+        this.curName = curName;
+        this.curCode = curCode;
+    }
+
     @Id
     @Column(name = "currency_uuid")
     private UUID uuid;
 
-    @Column(name = "сur_ID", nullable = false)
+    @Column(name = "сur_ID")
     private int curId;
 
-    @Column(name = "cur_abbreviation", nullable = false)
+    @Column(name = "cur_abbreviation")
     private String curAbbreviation;
 
-    @Column(name = "cur_scale", nullable = false)
+    @Column(name = "cur_scale")
     private int curScale;
 
-    @Column(name = "cur_name", nullable = false)
+    @Column(name = "cur_name")
     private String curName;
 
-    @Column(name = "cur_code", nullable = false)
-    private int curCode;                                    // ISO 4217
+    @Column(name = "cur_code")
+    private String curCode;                                    // ISO 4217
 
     @OneToMany(mappedBy = "currency")
     private List<Rate> rateList = new ArrayList<>();
