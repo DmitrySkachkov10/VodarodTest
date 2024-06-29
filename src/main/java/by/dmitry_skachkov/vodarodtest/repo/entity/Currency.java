@@ -19,7 +19,7 @@ import java.util.UUID;
 @Setter
 public class Currency {
 
-    public Currency(UUID uuid, int curId, String curAbbreviation, int curScale, String curName, String curCode) {
+    public Currency(UUID uuid, int curId, String curAbbreviation, int curScale, String curName, int curCode) {
         this.uuid = uuid;
         this.curId = curId;
         this.curAbbreviation = curAbbreviation;
@@ -45,7 +45,7 @@ public class Currency {
     private String curName;
 
     @Column(name = "cur_code")
-    private String curCode;                                    // ISO 4217
+    private int curCode;                                    // ISO 4217
 
     @OneToMany(mappedBy = "currency")
     private List<Rate> rateList = new ArrayList<>();

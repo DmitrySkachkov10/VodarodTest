@@ -17,7 +17,7 @@ public class CurrencyDto {
     private int curParentId;
 
     @JsonProperty("Cur_Code")
-    private String curCode;
+    private int curCode;
 
     @JsonProperty("Cur_Abbreviation")
     private String curAbbreviation;
