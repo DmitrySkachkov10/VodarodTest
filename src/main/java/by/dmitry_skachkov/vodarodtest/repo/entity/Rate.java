@@ -19,6 +19,12 @@ import java.util.UUID;
 @Setter
 public class Rate {
 
+    public Rate(UUID uuid, LocalDateTime date, BigDecimal officialRate) {
+        this.uuid = uuid;
+        this.date = date;
+        this.officialRate = officialRate;
+    }
+
     @Id
     @Column(name = "rate_uuid")
     private UUID uuid;
