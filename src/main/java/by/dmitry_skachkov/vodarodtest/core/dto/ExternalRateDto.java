@@ -5,18 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class RateDto {
+public class ExternalRateDto {
 
     @JsonProperty("Cur_ID")
     private int curId;
 
     @JsonProperty("Date")
-    private LocalDate date;
+    private LocalDateTime date;
 
     @JsonProperty("Cur_Abbreviation")
     private String curAbbreviation;
