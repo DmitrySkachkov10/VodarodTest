@@ -1,9 +1,5 @@
 # Скачков Дмитрий - Тестовое задание для Vodarod 
 
-### Требования
-
-- H2 DataBase
-
 ## API Документация
 
 ### `GET /api/currency/rates/on-date`
