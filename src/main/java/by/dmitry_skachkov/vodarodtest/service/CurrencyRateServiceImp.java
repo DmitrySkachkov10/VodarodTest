@@ -22,9 +22,10 @@ public class CurrencyRateServiceImp implements CurrencyRateService {
     private final int DAILY_FREQUENCY = 0;
 
 
-    public CurrencyRateServiceImp(NationalBankClient client, RateRepo repo) {
+    public CurrencyRateServiceImp(NationalBankClient client, RateRepo rateRepo, CurrencyRepo currencyRepo) {
         this.client = client;
-        this.repo = repo;
+        this.rateRepo = rateRepo;
+        this.currencyRepo = currencyRepo;
     }
 
     //todo aop around with logs
@@ -33,10 +34,11 @@ public class CurrencyRateServiceImp implements CurrencyRateService {
         List<ExternalRateDto> externalRateDtos = client.getDailyCurrencyRates(date, DAILY_FREQUENCY);
         List<Rate> rateList = externalRateDtos.stream()
                 .map(m -> new Rate(UUID.randomUUID(),
-                        m.getDate(),
-                        BigDecimal.valueOf(m.getCurOfficialRate())))
+                        m.getDate().toLocalDate(),
+                        BigDecimal.valueOf(m.getCurOfficialRate()),
+                        currencyRepo.findByCurId(m.getCurId())))
                 .toList();
-        repo.saveAll(rateList);
+        rateRepo.saveAll(rateList);
     }
 
 
