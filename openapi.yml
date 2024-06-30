@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+  title: Currency API by Dmitry Skachkov
+  description: API for Vodarod test task
+  version: 1.0.0
+
+paths:
+  /api/currency/rates/on-date:
+    get:
+      summary: "Get currency rate by date"
+      operationId: "getCurrencyRateByDate"
+      parameters:
+        - name: "date"
+          in: "query"
+          required: true
+          schema:
+            type: "string"  # Assuming date format as string, adjust as needed
+      responses:
+        "200":
+          description: "OK"
+
+  /api/currency/rates/{code}:
+    get:
+      summary: "Get currency rate by code and date"
+      operationId: "getCurrencyRateByCodeAndDate"
+      parameters:
+        - name: "code"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "date"
+          in: "query"
+          required: true
+          schema:
+            type: "string"  # Assuming date format as string, adjust as needed
+      responses:
+        "200":
+          description: "OK"
+
+  /exrates/currencies:
+    get:
+      summary: "Get all available currencies"
+      operationId: "getAllCurrencies"
+      responses:
+        "200":
+          description: "OK"
+
+  /exrates/rates:
+    get:
+      summary: "Get all currency rates"
+      operationId: "getAllCurrencyRates"
+      responses:
+        "200":
+          description: "OK"
