@@ -1,5 +1,6 @@
 package by.dmitry_skachkov.vodarodtest.controller;
 
+import by.dmitry_skachkov.vodarodtest.core.dto.RateDto;
 import by.dmitry_skachkov.vodarodtest.service.api.CurrencyRateService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +24,10 @@ public class CurrencyRateController {
         return ResponseEntity.status(HttpStatus.OK).body("Данные за " + date + " успешно загружены");
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getCurrencyRateByCodeAndDate(@PathVariable("code") int code,
+    @GetMapping("/{code}")
+    public ResponseEntity<RateDto> getCurrencyRateByCodeAndDate(@PathVariable("code") int code,
                                                           @RequestParam("date") LocalDate date) {
-        return null;
+        RateDto rateDto = currencyRateService.getRateByCodeAndDate(code, date);
+        return new ResponseEntity<>(rateDto, HttpStatus.OK);
     }
 }

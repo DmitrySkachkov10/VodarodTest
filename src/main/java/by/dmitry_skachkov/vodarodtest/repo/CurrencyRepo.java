@@ -9,4 +9,5 @@ import java.util.UUID;
 @Repository
 public interface CurrencyRepo extends ListCrudRepository<Currency, UUID> {
 
+    Currency findByCurId(int curId);
 }
