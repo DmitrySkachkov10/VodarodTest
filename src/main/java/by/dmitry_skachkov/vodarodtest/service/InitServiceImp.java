@@ -23,7 +23,6 @@ public class InitServiceImp implements InitService {
         this.client = client;
     }
 
-    //todo aop
     @PostConstruct
     @Override
     public void loadInitialData() {
