@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
@@ -19,7 +20,7 @@ import java.util.UUID;
 @Setter
 public class Rate {
 
-    public Rate(UUID uuid, LocalDateTime date, BigDecimal officialRate) {
+    public Rate(UUID uuid, LocalDate date, BigDecimal officialRate) {
         this.uuid = uuid;
         this.date = date;
         this.officialRate = officialRate;
@@ -30,9 +31,9 @@ public class Rate {
     private UUID uuid;
 
     @Column(nullable = false)
-    private LocalDateTime date;
+    private LocalDate date;
 
-    @Column(name = "official_rate")
+    @Column(name = "official_rate", precision = 18, scale = 4)
     private BigDecimal officialRate;
 
     @ManyToOne(fetch = FetchType.LAZY)
