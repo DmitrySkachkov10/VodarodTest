@@ -38,16 +38,20 @@ public class CurrencyRateServiceImp implements CurrencyRateService {
     @Override
     public void addRatesInfo(LocalDate date) {
         try {
-            List<ExternalRateDto> externalRateDtos = externalRateDtos = client.getDailyCurrencyRates(date, DAILY_FREQUENCY);
+            List<ExternalRateDto> externalRateDtos = client.getDailyCurrencyRates(date, DAILY_FREQUENCY);
 
-            List<Rate> rateList = externalRateDtos.stream()
-                    .map(m -> new Rate(UUID.randomUUID(),
-                            m.getDate().toLocalDate(),
-                            BigDecimal.valueOf(m.getCurOfficialRate()),
-                            currencyRepo.findByCurId(m.getCurId())))
-                    .toList();
+            for (ExternalRateDto dto : externalRateDtos) {
 
-            rateRepo.saveAll(rateList);
+                Rate existingRate = rateRepo.findByCurrency_CurIdAndDate( dto.getCurId(),dto.getDate().toLocalDate());
+                if (existingRate == null) {
+
+                    Rate newRate = new Rate(UUID.randomUUID(),
+                            dto.getDate().toLocalDate(),
+                            BigDecimal.valueOf(dto.getCurOfficialRate()),
+                            currencyRepo.findByCurId(dto.getCurId()));
+                    rateRepo.save(newRate);
+                }
+            }
         } catch (FeignException e) {
             throw new FeignClientException(e.getMessage());
         } catch (Exception e) {
