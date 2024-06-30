@@ -28,6 +28,6 @@ public class CurrencyRateController {
     public ResponseEntity<RateDto> getCurrencyRateByCodeAndDate(@PathVariable("code") int code,
                                                           @RequestParam("date") LocalDate date) {
         RateDto rateDto = currencyRateService.getRateByCodeAndDate(code, date);
-        return new ResponseEntity<>(rateDto, HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body(rateDto);
     }
 }
