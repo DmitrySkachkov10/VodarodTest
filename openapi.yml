@@ -14,7 +14,7 @@ paths:
           in: "query"
           required: true
           schema:
-            type: "string"  # Assuming date format as string, adjust as needed
+            type: "string" 
       responses:
         "200":
           description: "OK"
@@ -34,7 +34,7 @@ paths:
           in: "query"
           required: true
           schema:
-            type: "string"  # Assuming date format as string, adjust as needed
+            type: "string"  
       responses:
         "200":
           description: "OK"
