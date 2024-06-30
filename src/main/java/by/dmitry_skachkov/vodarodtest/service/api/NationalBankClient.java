@@ -20,6 +20,4 @@ public interface NationalBankClient {
     List<ExternalRateDto> getDailyCurrencyRates(@RequestParam("ondate")
                                                 @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
                                                 @RequestParam("periodicity") int periodicity);
-
 }
-

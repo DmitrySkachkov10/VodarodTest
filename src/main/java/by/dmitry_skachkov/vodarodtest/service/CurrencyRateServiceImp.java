@@ -25,7 +25,6 @@ public class CurrencyRateServiceImp implements CurrencyRateService {
 
     private final int DAILY_FREQUENCY = 0;
 
-
     public CurrencyRateServiceImp(NationalBankClient client, RateRepo rateRepo, CurrencyRepo currencyRepo) {
         this.client = client;
         this.rateRepo = rateRepo;
@@ -34,7 +33,7 @@ public class CurrencyRateServiceImp implements CurrencyRateService {
 
     //todo aop around with logs
     @Override
-    public void getRatesByDate(LocalDate date) {
+    public void addRatesInfo(LocalDate date) {
         List<ExternalRateDto> externalRateDtos = client.getDailyCurrencyRates(date, DAILY_FREQUENCY);
 
         List<Rate> rateList = externalRateDtos.stream()

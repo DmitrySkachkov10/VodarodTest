@@ -20,7 +20,7 @@ public class CurrencyRateController {
 
     @GetMapping("/on-date")
     public ResponseEntity<String> getCurrencyRateByDate(@RequestParam("date") LocalDate date) {
-        currencyRateService.getRatesByDate(date);
+        currencyRateService.addRatesInfo(date);
         return ResponseEntity.status(HttpStatus.OK).body("Данные за " + date + " успешно загружены");
     }
 
