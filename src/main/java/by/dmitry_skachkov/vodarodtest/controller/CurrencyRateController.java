@@ -21,12 +21,12 @@ public class CurrencyRateController {
     @GetMapping("/on-date")
     public ResponseEntity<String> getCurrencyRateByDate(@RequestParam("date") LocalDate date) {
         currencyRateService.addRatesInfo(date);
-        return ResponseEntity.status(HttpStatus.OK).body("Данные за " + date + " успешно загружены");
+        return ResponseEntity.status(HttpStatus.OK).body("Data from " + date + " successfully loaded");
     }
 
     @GetMapping("/{code}")
     public ResponseEntity<RateDto> getCurrencyRateByCodeAndDate(@PathVariable("code") int code,
-                                                          @RequestParam("date") LocalDate date) {
+                                                                @RequestParam("date") LocalDate date) {
         RateDto rateDto = currencyRateService.getRateByCodeAndDate(code, date);
         return ResponseEntity.status(HttpStatus.OK).body(rateDto);
     }
